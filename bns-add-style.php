@@ -2,7 +2,7 @@
 /*
 Plugin Name: BNS Add Style
 Plugin URI: http://buynowshop.com/plugins/
-Description: Add an enqueued custom stylesheet to the active theme
+Description: Adds an enqueued custom stylesheet to the active theme
 Version: 0.1
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
@@ -67,7 +67,7 @@ function BNS_Add_Custom_Stylesheet(){
             return;
         }
         if ( ! WP_Filesystem( $credentials ) ) {
-            request_filesystem_credentials( get_stylesheet_directory_uri() . '/bns-add-custom-style.css', '' );
+            request_filesystem_credentials( get_stylesheet_directory_uri() . '/bns-add-custom-style.css' );
             return;
         }
     }
