@@ -2,7 +2,7 @@
 /*
 Plugin Name: BNS Add Style
 Plugin URI: http://buynowshop.com/plugins/
-Description: Allows for a custom stylesheet to be added to a theme and enqueued
+Description: Add an enqueued custom stylesheet to the active theme
 Version: 0.1
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
@@ -46,18 +46,59 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
 /**
- * Add Custom Styles
- * Allows for custom stylesheet to be added by end-user.
+ * BNS Add Custom Stylesheet
+ * If the custom stylesheet is not readable this will create it.
  *
  * @package BNS_Add_Style
  * @since   0.1
  *
- * @internal Requires 'bns-custom-style.css' file to be readable; this may
- * require the file be uploaded to the active theme folder.
+ * @uses    (constant) FS_CHMOD_FILE - predefined mode settings for WP files
+ * @uses    (global) $wp_filesystem -> put_contents
+ * @uses    get_stylesheet_directory
+ * @uses    get_stylesheet_directory_uri
+ * @uses    request_filesystem_credentials
+ *
+ * @todo Provide more information in the initial content
+ */
+function BNS_Add_Custom_Stylesheet(){
+    if ( ! is_readable( get_stylesheet_directory() . '/bns-add-custom-style.css' ) ) {
+        require_once( ABSPATH . '/wp-admin/includes/file.php' );
+        if ( false === ( $credentials = request_filesystem_credentials( get_stylesheet_directory_uri() . '/bns-add-custom-style.css' ) ) ) {
+            return;
+        }
+        if ( ! WP_Filesystem( $credentials ) ) {
+            request_filesystem_credentials( get_stylesheet_directory_uri() . '/bns-add-custom-style.css', '' );
+            return;
+        }
+    }
+    global $wp_filesystem;
+    $wp_filesystem->put_contents(
+        get_stylesheet_directory() . '/bns-add-custom-style.css',
+        '/** BNS Add Custom Stylesheet Content */',
+        FS_CHMOD_FILE
+    );
+
+}
+
+/**
+ * Add Custom Styles
+ * Adds a custom stylesheet to the active theme folder which can be accessed via
+ * the "Edit Themes" functionality under Appearance | Editor
+ *
+ * @package BNS_Add_Style
+ * @since   0.1
+ *
+ * @uses    BNS_Add_Custom_Stylesheet
+ * @uses    get_stylesheet_directory
+ * @uses    get_stylesheet_directory_uri
+ * @uses    wp_enqueue_style
  */
 function BNS_Add_Styles() {
     /* Enqueue Styles */
     if ( is_readable( get_stylesheet_directory() . '/bns-add-custom-style.css' ) ) {
+        wp_enqueue_style( 'BNS-Add-Custom-Style', get_stylesheet_directory_uri() . '/bns-add-custom-style.css', array(), '0.1', 'screen' );
+    } else {
+        BNS_Add_Custom_Stylesheet();
         wp_enqueue_style( 'BNS-Add-Custom-Style', get_stylesheet_directory_uri() . '/bns-add-custom-style.css', array(), '0.1', 'screen' );
     }
 }
