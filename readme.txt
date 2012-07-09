@@ -5,6 +5,8 @@ Tags: styles, custom styles, admin, editor, appearance
 Requires at least: 2.6
 Tested up to: 3.4
 Stable tag: 0.1
+License: GNU General Public License v2
+License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
 Adds an enqueued custom stylesheet to the active theme
 
@@ -19,6 +21,9 @@ IF all you need to do is change a Theme's existing CSS this plugin will provide 
 * Enjoy!
 
 == Frequently Asked Questions ==
+= WTF ... IT'S NOT WORKING!!!?! =
+A: You may need to go to your home page to allow WordPress to fully initialize the plugin and note the new file being added. (The is the first To-Do list item!)
+
 = Can I specify the name of this custom stylesheet? =
 A: No, the stylesheet file name is: bns-add-custom-style.css
 
@@ -26,7 +31,7 @@ A: No, the stylesheet file name is: bns-add-custom-style.css
 A: You are able to edit the stylesheet in either your preferred method of editing theme template files, or you can simply use the editor found under Appearance | Editor and locate the "bns-add-custom-style.css" file.
 
 == Screenshots ==
-* None at this time
+* There are no screenshots, yet.
 
 == Other Notes ==
 * Copyright 2012  Edward Caissie  (email : edward.caissie@gmail.com)

@@ -43,6 +43,8 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  *
  * The license for this software can also likely be found here:
  * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * @todo Find a way to insure the file is created without having to go to the site's home page first to re-initialize.
  */
 
 /**
