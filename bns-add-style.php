@@ -14,7 +14,9 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 /**
  * BNS Add Style WordPress plugin
  *
- * Allows for a custom stylesheet to be added to a theme and enqueued
+ * IF all you need to do is change a Theme's existing CSS this plugin will
+ * provide you an enqueued stylesheet that will not be over-written when a Theme
+ * is update; saving you the work of creating and maintaining a Child-Theme.
  *
  * @package     BNS_Add_Style
  * @link        http://buynowshop.com/plugins/
