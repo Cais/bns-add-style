@@ -56,6 +56,7 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  *
  * @uses    (constant) FS_CHMOD_FILE - predefined mode settings for WP files
  * @uses    (global) $wp_filesystem -> put_contents
+ * @uses    WP_Filesystem
  * @uses    get_stylesheet_directory
  * @uses    get_stylesheet_directory_uri
  * @uses    request_filesystem_credentials

@@ -15,14 +15,17 @@ Adds an enqueued custom stylesheet to the active theme
 IF all you need to do is change a Theme's existing CSS this plugin will provide you an enqueued stylesheet that will not be over-written when a Theme is update; saving you the work of creating and maintaining a Child-Theme.
 
 == Installation ==
-* Under Plugins | Add New - Search or Upload
-* Activate
+* Under Plugins | Add New via Search or Upload.
+* Activate.
+* Read this article for further assistance with installation: http://wpfirstaid.com/2009/12/plugin-installation/
+* Important Note: Visit your site home page to insure "bns-add-custom-style.css" is initialized correctly!
 * Add appropriate style elements and properties to "bns-add-custom-style.css" as needed.
 * Enjoy!
 
 == Frequently Asked Questions ==
 = WTF ... IT'S NOT WORKING!!!?! =
-A: You may need to go to your home page to allow WordPress to fully initialize the plugin and note the new file being added. (The is the first To-Do list item!)
+A: You may need to go to your home page to allow WordPress to fully initialize the plugin and note the new file being added.
+(NB: The is the first To-Do list item!)
 
 = Can I specify the name of this custom stylesheet? =
 A: No, the stylesheet file name is: bns-add-custom-style.css
