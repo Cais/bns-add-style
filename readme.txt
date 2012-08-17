@@ -2,8 +2,8 @@
 Contributors: cais
 Donate link: http://buynowshop.com
 Tags: styles, custom styles, admin, editor, appearance
-Requires at least: 2.6
-Tested up to: 3.4
+Requires at least: 2.5
+Tested up to: 3.4.1
 Stable tag: 0.1
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -18,20 +18,15 @@ IF all you need to do is change a Theme's existing CSS this plugin will provide 
 * Under Plugins | Add New via Search or Upload.
 * Activate.
 * Read this article for further assistance with installation: http://wpfirstaid.com/2009/12/plugin-installation/
-* Important Note: Visit your site home page to insure "bns-add-custom-style.css" is initialized correctly!
 * Add appropriate style elements and properties to "bns-add-custom-style.css" as needed.
 * Enjoy!
 
 == Frequently Asked Questions ==
-= WTF ... IT'S NOT WORKING!!!?! =
-A: You may need to go to your home page to allow WordPress to fully initialize the plugin and note the new file being added.
-(NB: The is the first To-Do list item!)
-
 = Can I specify the name of this custom stylesheet? =
 A: No, the stylesheet file name is: bns-add-custom-style.css
 
 = How can I edit the "bns-add-custom-style.css" stylesheet? =
-A: You are able to edit the stylesheet in either your preferred method of editing theme template files, or you can simply use the editor found under Appearance | Editor and locate the "bns-add-custom-style.css" file.
+A: You are able to edit the stylesheet with either your preferred IDE/method of editing theme template files; or, you can simply use the editor found under Appearance | Editor and locate the "bns-add-custom-style.css" file.
 
 == Screenshots ==
 * There are no screenshots, yet.
