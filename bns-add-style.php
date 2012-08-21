@@ -95,8 +95,8 @@ function BNS_Add_Custom_Stylesheet(){
     global $wp_filesystem;
 
     /** @var $css - introductory text of stylesheet */
-    $css = __( "
-/** BNS Add Style - Custom Stylesheet */
+    $css =
+"/** BNS Add Style - Custom Stylesheet */
  *
  * This file was added after the activation of the BNS Add Style Plugin.
  *
@@ -107,7 +107,7 @@ function BNS_Add_Custom_Stylesheet(){
  * not be used. If you reactivate this plugin the styles below will take effect.
  *
  * Add your custom styles for this theme below this comment block. Enjoy!
- */ ", 'bns-as' );
+ */";
     /** The format and placement above is reproduced as shown in the editor?! */
 
     $wp_filesystem->put_contents(
