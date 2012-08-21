@@ -78,8 +78,11 @@ if ( version_compare( $wp_version, "2.5", "<" ) ) {
  * @uses    get_stylesheet_directory_uri
  * @uses    request_filesystem_credentials
  * @uses    wp_nonce_url
+ *
+ * @return  bool|null
  */
 function BNS_Add_Custom_Stylesheet(){
+    /** If the custom stylesheet is not readable get the credentials to write it */
     if ( ! is_readable( get_stylesheet_directory() . '/bns-add-custom-style.css' ) ) {
         require_once( ABSPATH . '/wp-admin/includes/file.php' );
         $url = wp_nonce_url( get_stylesheet_directory_uri() . '/bns-add-custom-style.css' );
@@ -92,8 +95,8 @@ function BNS_Add_Custom_Stylesheet(){
             return true;
         }
     }
-    global $wp_filesystem;
 
+    global $wp_filesystem;
     /** @var $css - introductory text of stylesheet */
     $css =
 "/**
@@ -117,6 +120,8 @@ function BNS_Add_Custom_Stylesheet(){
         FS_CHMOD_FILE
     );
 
+    /** Now leave well enough alone after creating the CSS file */
+    return null;
 }
 
 /**
