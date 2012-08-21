@@ -96,7 +96,8 @@ function BNS_Add_Custom_Stylesheet(){
 
     /** @var $css - introductory text of stylesheet */
     $css =
-"/** BNS Add Style - Custom Stylesheet */
+"/**
+ * BNS Add Style - Custom Stylesheet
  *
  * This file was added after the activation of the BNS Add Style Plugin.
  *
