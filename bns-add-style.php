@@ -153,4 +153,4 @@ function BNS_Add_Styles() {
  */
 add_action( 'admin_init', 'BNS_Add_Styles' );
 /** Enqueue the stylesheet after the default enqueue position to insure CSS specificity is adhered to */
-add_action( 'wp_enqueue_scripts', 'BNS_Add_Styles', 20 );
+add_action( 'wp_enqueue_scripts', 'BNS_Add_Styles', 15, 2 );
