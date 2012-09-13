@@ -3,7 +3,7 @@
 Plugin Name: BNS Add Style
 Plugin URI: http://buynowshop.com/plugins/
 Description: Adds an enqueued custom stylesheet to the active theme
-Version: 0.1
+Version: 0.2
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 Textdomain: bns-as
@@ -133,19 +133,24 @@ function BNS_Add_Custom_Stylesheet(){
  * @since   0.1
  *
  * @uses    BNS_Add_Custom_Stylesheet
+ * @uses    get_plugin_data
  * @uses    get_stylesheet_directory
  * @uses    get_stylesheet_directory_uri
  * @uses    wp_enqueue_style
  *
- * @todo Review use of version in enqueue statements; would changing the version number cause the stylesheet to be over-written?
+ * @version 0.2
+ * @date    September 12, 2012
+ * Set stylesheet version to be dynamic
  */
 function BNS_Add_Styles() {
+    require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+    $bns_as_data = get_plugin_data( __FILE__ );
     /* Enqueue Styles */
     if ( is_readable( get_stylesheet_directory() . '/bns-add-custom-style.css' ) ) {
-        wp_enqueue_style( 'BNS-Add-Custom-Style', get_stylesheet_directory_uri() . '/bns-add-custom-style.css', array(), '0.1', 'screen' );
+        wp_enqueue_style( 'BNS-Add-Custom-Style', get_stylesheet_directory_uri() . '/bns-add-custom-style.css', array(), $bns_as_data['Version'], 'screen' );
     } else {
         BNS_Add_Custom_Stylesheet();
-        wp_enqueue_style( 'BNS-Add-Custom-Style', get_stylesheet_directory_uri() . '/bns-add-custom-style.css', array(), '0.1', 'screen' );
+        wp_enqueue_style( 'BNS-Add-Custom-Style', get_stylesheet_directory_uri() . '/bns-add-custom-style.css', array(), $bns_as_data['Version'], 'screen' );
     }
 }
 /**
