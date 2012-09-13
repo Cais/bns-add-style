@@ -23,10 +23,10 @@ IF all you need to do is change a Theme's existing CSS this plugin will provide 
 
 == Frequently Asked Questions ==
 = Can I specify the name of this custom stylesheet? =
-A: No, the stylesheet file name is: bns-add-custom-style.css
+No, the stylesheet file name is: bns-add-custom-style.css
 
 = How can I edit the "bns-add-custom-style.css" stylesheet? =
-A: You are able to edit the stylesheet with either your preferred IDE/method of editing theme template files; or, you can simply use the editor found under Appearance | Editor and locate the "bns-add-custom-style.css" file.
+You are able to edit the stylesheet with either your preferred IDE/method of editing theme template files; or, you can simply use the editor found under Appearance | Editor and locate the "bns-add-custom-style.css" file.
 
 == Screenshots ==
 * There are no screenshots, yet.
