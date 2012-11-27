@@ -3,8 +3,8 @@ Contributors: cais
 Donate link: http://buynowshop.com
 Tags: styles, custom-styles, admin, editor, appearance, plugin-only
 Requires at least: 2.5
-Tested up to: 3.5-alpha
-Stable tag: 0.3
+Tested up to: 3.5
+Stable tag: 0.4
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -58,6 +58,10 @@ You are able to edit the stylesheet with either your preferred IDE/method of edi
 Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.4 =
+* Release November 2012
+* Add i18n support to introductory text of stylesheet
+
 = 0.3 =
 * Implement OOP style class and code
 

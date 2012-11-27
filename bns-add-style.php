@@ -3,7 +3,7 @@
 Plugin Name: BNS Add Style
 Plugin URI: http://buynowshop.com/plugins/
 Description: Adds an enqueued custom stylesheet to the active theme
-Version: 0.3
+Version: 0.4
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 Textdomain: bns-as
@@ -22,7 +22,7 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @link        http://buynowshop.com/plugins/
  * @link        https://github.com/Cais/
  * @link        http://wordpress.org/extend/plugins/
- * @version     0.3
+ * @version     0.4
  * @author      Edward Caissie <edward.caissie@gmail.com>
  * @copyright   Copyright (c) 2012, Edward Caissie
  *
@@ -50,6 +50,10 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @date    September 18, 2012
  * Implement OOP style class and code
  *
+ * @version 0.4
+ * @date    November 27, 2012
+ * Add i18n support to introductory text of stylesheet
+ *
  * @todo Review use of `admin_init` hook - is there a better hook/method?
  */
 
@@ -64,6 +68,7 @@ class BNS_Add_Style {
          * @internal    Version 2.5 - WP_Filesystem
          *
          * @uses        (global) wp_version
+         * @uses        add_action
          */
         global $wp_version;
         $exit_message = __( 'BNS Add Style requires WordPress version 2.5 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please Update!</a>', 'bns-as' );
@@ -73,7 +78,7 @@ class BNS_Add_Style {
 
         /** Make sure the stylesheet is added immediately. */
         add_action( 'admin_init', array( $this, 'Add_Stylesheet' ) );
-        /** Enqueue the stylesheet after the default enqueue position to insure CSS specificity is adhered to */
+        /** Enqueue the stylesheet after the default enqueue position (10) to insure CSS specificity is adhered to */
         add_action( 'wp_enqueue_scripts', array( $this, 'Add_Stylesheet' ), 15, 2 );
 
     }
@@ -94,6 +99,10 @@ class BNS_Add_Style {
      * @uses    wp_nonce_url
      *
      * @return  bool|null
+     *
+     * @version 0.4
+     * @date    November 27, 2012
+     * Add i18n support to introductory text of stylesheet
      */
     function Add_Custom_Stylesheet(){
         /** If the custom stylesheet is not readable get the credentials to write it */
@@ -112,7 +121,7 @@ class BNS_Add_Style {
 
         global $wp_filesystem;
         /** @var $css - introductory text of stylesheet */
-        $css = "/**
+        $css = __( "/**
  * BNS Add Style - Custom Stylesheet
  *
  * This file was added after the activation of the BNS Add Style Plugin.
@@ -124,7 +133,7 @@ class BNS_Add_Style {
  * not be used. If you reactivate this plugin the styles below will take effect.
  *
  * Add your custom styles for this theme below this comment block. Enjoy!
- */";
+ */", 'bns-as' );
         /** The format and placement above is reproduced as shown in the editor?! */
 
         $wp_filesystem->put_contents(
