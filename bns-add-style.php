@@ -78,7 +78,10 @@ class BNS_Add_Style {
 
         /** Make sure the stylesheet is added immediately. */
         add_action( 'admin_init', array( $this, 'Add_Stylesheet' ) );
-        /** Enqueue the stylesheet after the default enqueue position (10) to insure CSS specificity is adhered to */
+        /**
+         * Enqueue the stylesheet after the default enqueue position (10)
+         * to insure CSS specificity is adhered to
+         */
         add_action( 'wp_enqueue_scripts', array( $this, 'Add_Stylesheet' ), 15, 2 );
 
     }
