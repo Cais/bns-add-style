@@ -261,6 +261,8 @@ class BNS_Add_Style {
      * @package BNS_Add_Style
      * @since   0.5
      *
+     * @internal uses LESS-1.3.1 from http://lesscss.org
+     *
      * @uses    add_custom_stylesheet
      * @uses    get_plugin_data
      * @uses    get_stylesheet_directory
@@ -275,7 +277,7 @@ class BNS_Add_Style {
             /** Print new line - head section will be easier to read */
             printf ( "\n" );
             /** Add JavaScript to compile LESS on the fly */
-            wp_enqueue_script( 'less-1.3', plugin_dir_url( __FILE__ ) . 'less-1.3.0.min.js', '', '1.3.0' );
+            wp_enqueue_script( 'less-1.3.1', plugin_dir_url( __FILE__ ) . 'less-1.3.1.min.js', '', '1.3.1' );
         } else {
             $this->add_custom_less_stylesheet();
             /** Add LESS link - cannot enqueue due to rel requirement */
@@ -283,7 +285,7 @@ class BNS_Add_Style {
             /** Print new line - head section will be easier to read */
             printf ( "\n" );
             /** Add JavaScript to compile LESS on the fly */
-            wp_enqueue_script( 'less-1.3', plugin_dir_url( __FILE__ ) . 'less-1.3.0.min.js', '', '1.3.0' );
+            wp_enqueue_script( 'less-1.3.1', plugin_dir_url( __FILE__ ) . 'less-1.3.1.min.js', '', '1.3.1' );
         }
     }
 }
