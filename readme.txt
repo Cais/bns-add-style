@@ -60,7 +60,7 @@ Please stay current with your WordPress installation, your active theme, and you
 == Changelog ==
 = 0.5 =
 * Release December 2012
-* Added LESS support with additional stylesheet `bns-add-less-style.css`
+* Added LESS support with additional stylesheet `bns-add-less-style.css` (beta)
 
 = 0.4 =
 * Release November 2012
