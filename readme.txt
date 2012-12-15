@@ -4,7 +4,7 @@ Donate link: http://buynowshop.com
 Tags: styles, custom-styles, admin, editor, appearance, plugin-only
 Requires at least: 2.5
 Tested up to: 3.5
-Stable tag: 0.5
+Stable tag: 0.5.1
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
