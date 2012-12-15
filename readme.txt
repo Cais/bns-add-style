@@ -4,7 +4,7 @@ Donate link: http://buynowshop.com
 Tags: styles, custom-styles, admin, editor, appearance, plugin-only
 Requires at least: 2.5
 Tested up to: 3.5
-Stable tag: 0.5.1
+Stable tag: 0.5.2
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -58,6 +58,10 @@ You are able to edit the stylesheet with either your preferred IDE/method of edi
 Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.5.2 =
+* Released December 2012
+* Refactored to correct headers being resent and added LESS stylesheet version
+
 = 0.5 =
 * Release December 2012
 * Added LESS support with additional stylesheet `bns-add-less-style.css` (beta)

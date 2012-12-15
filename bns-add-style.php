@@ -3,7 +3,7 @@
 Plugin Name: BNS Add Style
 Plugin URI: http://buynowshop.com/plugins/
 Description: Adds an enqueued custom stylesheet to the active theme
-Version: 0.5.1
+Version: 0.5.2
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 Textdomain: bns-as
@@ -89,12 +89,12 @@ class BNS_Add_Style {
         add_action( 'wp_enqueue_scripts', array( $this, 'add_stylesheet' ), 15, 2 );
 
         /** Make sure the stylesheet is added immediately. */
-        // add_action( 'admin_init', array( $this, 'add_less_stylesheet' ) );
+        add_action( 'admin_init', array( $this, 'add_less_stylesheet' ) );
         /**
          * Add LESS after standard stylesheet and enqueue the LESS stylesheet
          * after the additional plugin stylesheet to insure CSS specificity
          */
-        // add_action( 'wp_enqueue_scripts', array( $this, 'add_less_stylesheet' ), 16, 2 );
+        add_action( 'wp_enqueue_scripts', array( $this, 'add_less_stylesheet' ), 16, 2 );
 
     }
 
@@ -268,18 +268,29 @@ class BNS_Add_Style {
      * @uses    get_stylesheet_directory
      * @uses    get_stylesheet_directory_uri
      * @uses    wp_enqueue_style
+     *
+     * @version 0.5.2
+     * @date    December 15, 2012
+     * Refactored to correct headers being resent and add stylesheet version
      */
     function add_less_stylesheet() {
         /* Enqueue Styles */
         if ( ! is_readable( get_stylesheet_directory() . '/bns-add-less-style.css' ) ) {
             $this->add_custom_less_stylesheet();
         }
-        /** Add LESS link - cannot enqueue due to rel requirement */
-        printf ( '<link rel="stylesheet/less" type="text/css" href="%1$s">', get_stylesheet_directory_uri() . '/bns-add-less-style.css' );
-        /** Print new line - head section will be easier to read */
-        printf ( "\n" );
-        /** Add JavaScript to compile LESS on the fly */
-        wp_enqueue_script( 'less-1.3.1', plugin_dir_url( __FILE__ ) . 'less-1.3.1.min.js', '', '1.3.1' );
+        if ( ! is_admin() ) {
+            /**
+             * Add LESS link - cannot enqueue due to rel requirement
+             * Set version equal to the unix timestamp to insure the most
+             * current (read: correct / non-cached) stylesheet is used.
+             * @todo review the version implementation
+             */
+            printf ( '<link rel="stylesheet/less" type="text/css" href="%1$s">', get_stylesheet_directory_uri() . '/bns-add-less-style.css' . '?ver=' . time() );
+            /** Print new line - head section will be easier to read */
+            printf ( "\n" );
+            /** Add JavaScript to compile LESS on the fly */
+            wp_enqueue_script( 'less-1.3.1', plugin_dir_url( __FILE__ ) . 'less-1.3.1.min.js', '', '1.3.1' );
+        }
     }
 }
 $bns_add_style = new BNS_Add_Style();
