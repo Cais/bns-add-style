@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: BNS Add Style
-Plugin URI: http://buynowshop.com/plugins/
+Plugin URI: http://buynowshop.com/plugins/bns-add-style/
 Description: Adds an enqueued custom stylesheet to the active theme
-Version: 0.5.2
+Version: 0.6
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 Textdomain: bns-as
@@ -22,7 +22,7 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @link        http://buynowshop.com/plugins/
  * @link        https://github.com/Cais/
  * @link        http://wordpress.org/extend/plugins/
- * @version     0.5
+ * @version     0.6
  * @author      Edward Caissie <edward.caissie@gmail.com>
  * @copyright   Copyright (c) 2012, Edward Caissie
  *
@@ -57,6 +57,10 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @version 0.5
  * @date    December 15, 2012
  * Added LESS support with additional stylesheet `bns-add-less-style.css`
+ *
+ * @version 0.6
+ * @date    December 15, 2012
+ * Fix typos and add complete URL link
  *
  * @todo Review use of `admin_init` hook - is there a better hook/method?
  */
