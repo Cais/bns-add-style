@@ -4,7 +4,7 @@ Donate link: http://buynowshop.com
 Tags: styles, custom-styles, admin, editor, appearance, plugin-only
 Requires at least: 2.5
 Tested up to: 3.5
-Stable tag: 0.6
+Stable tag: 0.5.3
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -58,8 +58,10 @@ You are able to edit the stylesheet with either your preferred IDE/method of edi
 Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
-= 0.6 =
-* Released ...
+= 0.5.3 =
+* Released December 2012
+* Fix typos and add complete URL link
+* Refactor to only add LESS file; end-user will need to FTP / manually edit file contents
 
 = 0.5.2 =
 * Released December 2012

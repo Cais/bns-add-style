@@ -3,7 +3,7 @@
 Plugin Name: BNS Add Style
 Plugin URI: http://buynowshop.com/plugins/bns-add-style/
 Description: Adds an enqueued custom stylesheet to the active theme
-Version: 0.6
+Version: 0.5.3
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 Textdomain: bns-as
@@ -58,10 +58,13 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @date    December 15, 2012
  * Added LESS support with additional stylesheet `bns-add-less-style.css`
  *
- * @version 0.6
+ * @version 0.5.3
  * @date    December 15, 2012
  * Fix typos and add complete URL link
+ * Refactor to only add LESS file; end-user will need to FTP / manually edit
+ * file contents
  *
+ * @todo Add access via the WordPress theme editor
  * @todo Review use of `admin_init` hook - is there a better hook/method?
  */
 
@@ -214,9 +217,9 @@ class BNS_Add_Style {
      */
     function add_custom_less_stylesheet(){
         /** If the custom stylesheet is not readable get the credentials to write it */
-        if ( ! is_readable( get_stylesheet_directory() . '/bns-add-less-style.css' ) ) {
+        if ( ! is_readable( get_stylesheet_directory() . '/bns-add-less-style.less' ) ) {
             require_once( ABSPATH . '/wp-admin/includes/file.php' );
-            $url = wp_nonce_url( get_stylesheet_directory_uri() . '/bns-add-less-style.css' );
+            $url = wp_nonce_url( get_stylesheet_directory_uri() . '/bns-add-less-style.less' );
             if ( false === ( $credentials = request_filesystem_credentials( $url ) ) ) {
                 return true;
             }
@@ -248,7 +251,7 @@ class BNS_Add_Style {
         /** The format and placement above is reproduced as shown in the editor?! */
 
         $wp_filesystem->put_contents(
-            get_stylesheet_directory() . '/bns-add-less-style.css',
+            get_stylesheet_directory() . '/bns-add-less-style.less',
             $less_css,
             FS_CHMOD_FILE
         );
@@ -279,7 +282,7 @@ class BNS_Add_Style {
      */
     function add_less_stylesheet() {
         /* Enqueue Styles */
-        if ( ! is_readable( get_stylesheet_directory() . '/bns-add-less-style.css' ) ) {
+        if ( ! is_readable( get_stylesheet_directory() . '/bns-add-less-style.less' ) ) {
             $this->add_custom_less_stylesheet();
         }
         if ( ! is_admin() ) {
@@ -289,7 +292,7 @@ class BNS_Add_Style {
              * current (read: correct / non-cached) stylesheet is used.
              * @todo review the version implementation
              */
-            printf ( '<link rel="stylesheet/less" type="text/css" href="%1$s">', get_stylesheet_directory_uri() . '/bns-add-less-style.css' . '?ver=' . time() );
+            printf ( '<link rel="stylesheet/less" type="text/css" href="%1$s">', get_stylesheet_directory_uri() . '/bns-add-less-style.less' . '?ver=' . time() );
             /** Print new line - head section will be easier to read */
             printf ( "\n" );
             /** Add JavaScript to compile LESS on the fly */
