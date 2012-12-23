@@ -3,7 +3,7 @@
 Plugin Name: BNS Add Style
 Plugin URI: http://buynowshop.com/plugins/bns-add-style/
 Description: Adds an enqueued custom stylesheet to the active theme
-Version: 0.5.3
+Version: 0.5.4
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 Textdomain: bns-as
@@ -22,7 +22,7 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @link        http://buynowshop.com/plugins/
  * @link        https://github.com/Cais/
  * @link        http://wordpress.org/extend/plugins/
- * @version     0.6
+ * @version     0.5.4
  * @author      Edward Caissie <edward.caissie@gmail.com>
  * @copyright   Copyright (c) 2012, Edward Caissie
  *
@@ -46,14 +46,6 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * The license for this software can also likely be found here:
  * http://www.gnu.org/licenses/gpl-2.0.html
  *
- * @version 0.3
- * @date    September 18, 2012
- * Implement OOP style class and code
- *
- * @version 0.4
- * @date    November 27, 2012
- * Add i18n support to introductory text of stylesheet
- *
  * @version 0.5
  * @date    December 15, 2012
  * Added LESS support with additional stylesheet `bns-add-less-style.css`
@@ -64,8 +56,12 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Refactor to only add LESS file; end-user will need to FTP / manually edit
  * file contents
  *
+ * @version 0.5.4
+ * @date    December 23, 2012
+ * Correct style bleed through into Administration Panels
+ *
  * @todo Add access via the WordPress theme editor
- * @todo Review use of `admin_init` hook - is there a better hook/method?
+ * @todo Review use of `admin_init` hook - is there a better hook/method? There must be as this is causing some grief!!
  */
 
 class BNS_Add_Style {
@@ -89,6 +85,7 @@ class BNS_Add_Style {
 
         /** Make sure the stylesheet is added immediately. */
         add_action( 'admin_init', array( $this, 'add_stylesheet' ) );
+        add_action( 'admin_init', array( $this, 'deregister_admin' ) );
         /**
          * Enqueue the stylesheet after the default enqueue position (10)
          * to insure CSS specificity is adhered to
@@ -196,6 +193,21 @@ class BNS_Add_Style {
             $this->add_custom_stylesheet();
             wp_enqueue_style( 'BNS-Add-Custom-Style', get_stylesheet_directory_uri() . '/bns-add-custom-style.css', array(), $bns_as_data['Version'], 'screen' );
         }
+    }
+
+    /**
+     * Deregister Admin
+     * Used to clear stylesheets being added ... probably _doing_it_wrong
+     *
+     * @package BNS_Add_Style
+     * @since   0.5.4
+     *
+     * @uses    wp_deregister_style
+     *
+     * @todo Fix this ugliness ... probably have to sort out the LESS method too
+     */
+    function deregister_admin() {
+        wp_deregister_style( 'BNS-Add-Custom-Style' );
     }
 
     /**
