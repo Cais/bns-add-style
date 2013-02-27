@@ -3,8 +3,8 @@ Contributors: cais
 Donate link: http://buynowshop.com
 Tags: styles, custom-styles, admin, editor, appearance, plugin-only
 Requires at least: 2.5
-Tested up to: 3.5
-Stable tag: 0.5.4
+Tested up to: 3.5.1
+Stable tag: 0.6
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -32,7 +32,7 @@ You are able to edit the stylesheet with either your preferred IDE/method of edi
 * There are no screenshots, yet.
 
 == Other Notes ==
-* Copyright 2012  Edward Caissie  (email : edward.caissie@gmail.com)
+* Copyright 2012-2013  Edward Caissie  (email : edward.caissie@gmail.com)
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 2,
@@ -58,6 +58,10 @@ You are able to edit the stylesheet with either your preferred IDE/method of edi
 Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.6 =
+* Release February 2013
+* Removed LESS support and relevant files (didn't work correctly)
+
 = 0.5.4 =
 * Released December 2012
 * Correct style bleed through into Administration Panels

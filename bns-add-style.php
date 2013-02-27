@@ -22,9 +22,9 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @link        http://buynowshop.com/plugins/
  * @link        https://github.com/Cais/
  * @link        http://wordpress.org/extend/plugins/
- * @version     0.5.4
+ * @version     0.6
  * @author      Edward Caissie <edward.caissie@gmail.com>
- * @copyright   Copyright (c) 2012, Edward Caissie
+ * @copyright   Copyright (c) 2012-2013, Edward Caissie
  *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License version 2, as published by the
@@ -60,6 +60,10 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @date    December 23, 2012
  * Correct style bleed through into Administration Panels
  *
+ * @version 0.6
+ * @date    February 27, 2013
+ * Remove LESS support ...
+ *
  * @todo Add access via the WordPress theme editor
  * @todo Review use of `admin_init` hook - is there a better hook/method? There must be as this is causing some grief!!
  */
@@ -91,14 +95,6 @@ class BNS_Add_Style {
          * to insure CSS specificity is adhered to
          */
         add_action( 'wp_enqueue_scripts', array( $this, 'add_stylesheet' ), 15, 2 );
-
-        /** Make sure the stylesheet is added immediately. */
-        add_action( 'admin_init', array( $this, 'add_less_stylesheet' ) );
-        /**
-         * Add LESS after standard stylesheet and enqueue the LESS stylesheet
-         * after the additional plugin stylesheet to insure CSS specificity
-         */
-        add_action( 'wp_enqueue_scripts', array( $this, 'add_less_stylesheet' ), 16, 2 );
 
     }
 
@@ -210,106 +206,5 @@ class BNS_Add_Style {
         wp_deregister_style( 'BNS-Add-Custom-Style' );
     }
 
-    /**
-     * Add Custom LESS Stylesheet
-     * If the custom LESS stylesheet does not exist this will create it.
-     *
-     * @package BNS_Add_Style
-     * @since   0.5
-     *
-     * @uses    (constant) FS_CHMOD_FILE - predefined mode settings for WP files
-     * @uses    (global) $wp_filesystem -> put_contents
-     * @uses    WP_Filesystem API
-     * @uses    get_stylesheet_directory
-     * @uses    get_stylesheet_directory_uri
-     * @uses    request_filesystem_credentials
-     * @uses    wp_nonce_url
-     *
-     * @return  bool|null
-     */
-    function add_custom_less_stylesheet(){
-        /** If the custom stylesheet is not readable get the credentials to write it */
-        if ( ! is_readable( get_stylesheet_directory() . '/bns-add-less-style.less' ) ) {
-            require_once( ABSPATH . '/wp-admin/includes/file.php' );
-            $url = wp_nonce_url( get_stylesheet_directory_uri() . '/bns-add-less-style.less' );
-            if ( false === ( $credentials = request_filesystem_credentials( $url ) ) ) {
-                return true;
-            }
-            if ( ! WP_Filesystem( $credentials ) ) {
-                // our credentials were no good, ask the user for them again
-                request_filesystem_credentials( $url, '', true, false, '' );
-                return true;
-            }
-        }
-
-        global $wp_filesystem;
-        /** @var $css - introductory text of stylesheet */
-        $less_css = __( "/**
- * BNS Add Style - LESS Stylesheet
- *
- * NB: This is for advanced users. Please refer to the LESS documentation found
- * on this site: http://lesscss.org/
- *
- * This file was added after the activation of the BNS Add Style Plugin.
- *
- * If you no longer want to use these styles delete the contents of this file,
- * or simply deactivate the BNS Add Style Plugin (recommended).
- *
- * If you choose to deactivate this plugin this file will remain as is but will
- * not be used. If you reactivate this plugin the styles below will take effect.
- *
- * Add your custom styles for this theme below this comment block. Enjoy!
- */", 'bns-as' );
-        /** The format and placement above is reproduced as shown in the editor?! */
-
-        $wp_filesystem->put_contents(
-            get_stylesheet_directory() . '/bns-add-less-style.less',
-            $less_css,
-            FS_CHMOD_FILE
-        );
-
-        /** Now leave well enough alone after creating the CSS file */
-        return null;
-    }
-
-    /**
-     * Add LESS Stylesheet
-     * Adds a LESS stylesheet to the active theme folder which can be accessed
-     * via the "Edit Themes" functionality under Appearance | Editor
-     *
-     * @package BNS_Add_Style
-     * @since   0.5
-     *
-     * @internal uses LESS-1.3.1 from http://lesscss.org
-     *
-     * @uses    add_custom_stylesheet
-     * @uses    get_plugin_data
-     * @uses    get_stylesheet_directory
-     * @uses    get_stylesheet_directory_uri
-     * @uses    wp_enqueue_style
-     *
-     * @version 0.5.2
-     * @date    December 15, 2012
-     * Refactored to correct headers being resent and add stylesheet version
-     */
-    function add_less_stylesheet() {
-        /* Enqueue Styles */
-        if ( ! is_readable( get_stylesheet_directory() . '/bns-add-less-style.less' ) ) {
-            $this->add_custom_less_stylesheet();
-        }
-        if ( ! is_admin() ) {
-            /**
-             * Add LESS link - cannot enqueue due to rel requirement
-             * Set version equal to the unix timestamp to insure the most
-             * current (read: correct / non-cached) stylesheet is used.
-             * @todo review the version implementation
-             */
-            printf ( '<link rel="stylesheet/less" type="text/css" href="%1$s">', get_stylesheet_directory_uri() . '/bns-add-less-style.less' . '?ver=' . time() );
-            /** Print new line - head section will be easier to read */
-            printf ( "\n" );
-            /** Add JavaScript to compile LESS on the fly */
-            wp_enqueue_script( 'less-1.3.1', plugin_dir_url( __FILE__ ) . 'less-1.3.1.min.js', '', '1.3.1' );
-        }
-    }
 }
 $bns_add_style = new BNS_Add_Style();
