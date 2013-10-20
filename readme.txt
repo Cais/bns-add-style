@@ -3,7 +3,7 @@ Contributors: cais
 Donate link: http://buynowshop.com
 Tags: styles, custom-styles, admin, editor, appearance, plugin-only
 Requires at least: 2.5
-Tested up to: 3.5.1
+Tested up to: 3.6
 Stable tag: 0.6
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -60,7 +60,9 @@ Please stay current with your WordPress installation, your active theme, and you
 == Changelog ==
 = 0.6 =
 * Release February 2013
-* Removed LESS support and relevant files (didn't work correctly)
+* Removed LESS support and relevant files, simplify to just being a CSS adder
+* Documentation clean up
+* Version number correction
 
 = 0.5.4 =
 * Released December 2012
