@@ -1,18 +1,18 @@
 === BNS Add Style ===
 Contributors: cais
 Donate link: http://buynowshop.com
-Tags: styles, custom-styles, admin, editor, appearance, plugin-only
+Tags: retired, styles, custom-styles, admin, editor, appearance, plugin-only, adopt-me
 Requires at least: 2.5
 Tested up to: 3.6
 Stable tag: 0.6
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
-Adds an enqueued custom stylesheet to the active theme
+Adds an enqueued custom stylesheet to the active theme (retired plugin).
 
 == Description ==
 
-If all you need to do is change a Theme's existing CSS this plugin will provide you an enqueued stylesheet that will not be over-written when a Theme is update; saving you the work of creating and maintaining a Child-Theme.
+This plugin is considered retired and may not be actively supported going forward. If all you need to do is change a Theme's existing CSS this plugin will provide you an enqueued stylesheet that will not be over-written when a Theme is update; saving you the work of creating and maintaining a Child-Theme.
 
 == Installation ==
 * Under Plugins | Add New via Search or Upload.
